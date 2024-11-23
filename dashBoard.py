@@ -1,5 +1,8 @@
 import streamlit as st
-
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
 
 # Cargar los datos
 df = pd.read_csv('https://raw.githubusercontent.com/IHawkI/graficas/refs/heads/main/dflimpio')
