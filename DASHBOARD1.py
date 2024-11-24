@@ -1,4 +1,8 @@
-# Cargar los datos
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+import streamlit as st
 df = pd.read_csv('https://raw.githubusercontent.com/IHawkI/graficas/refs/heads/main/dflimpio')
 
 # CSS para ampliar el ancho del contenido y mostrar las métricas en una sola fila
