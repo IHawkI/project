@@ -61,59 +61,15 @@ if vista_general or not vista_filtrada:
     rating_promedio = f"{df['Rating'].mean():,.2f}"
     Cantidad_promedio = f"{df['Quantity'].mean():,.2f}"
 
-    st.markdown(f"""
-        <div class="metric-container">
-            <div class="metric-box">
-                <div class="metric-title">Total de Clientes</div>
-                <div class="metric-value">{total_clientes}</div>
-            </div>
-            <div class="metric-box">
-                <div class="metric-title">Edad Promedio</div>
-                <div class="metric-value">{edad_promedio}</div>
-            </div>
-            <div class="metric-box">
-                <div class="metric-title">Rating Promedio</div>
-                <div class="metric-value">{rating_promedio}</div>
-            </div>
-            <div class="metric-box">
-                <div class="metric-title">Accesorios promedio</div>
-                <div class="metric-value">{Cantidad_promedio}</div>
-            </div>
-        </div>
-    """, unsafe_allow_html=True)
-
+  
     # Gráficos distribuidos en dos filas y cuatro columnas, alineados a la izquierda
     # Primera fila de gráficos
-    col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
-    with col1:
-        # Gráfico de Score Crediticio con los ajustes solicitados
-        fig, ax = plt.subplots(figsize=(6, 5))
-
-        # Histograma con colores diferenciados
-
-        # Líneas punteadas rojas y más gruesas en los límites
-        ax.axvline(550, color='red', linestyle='--', linewidth=2)
-        ax.axvline(750, color='red', linestyle='--', linewidth=2)
-
-        # Calcular porcentaje en el rango y desplazar el cuadro de texto
-        en_rango = len(df[(df['Quantity'] >= 550) & (df['Total Price'] <= 800)])
-        porcentaje = (en_rango / len(df)) * 100
-        ax.text(0.3, 0.9, f"{porcentaje:.2f}% en el rango", transform=ax.transAxes,
-                fontsize=12, color='black', ha='center', va='top',
-                bbox=dict(facecolor='white', edgecolor='black', boxstyle='round,pad=0.5'))
-        
-        # Configuración de etiquetas y título
-        ax.set_title("Precio total")
-        ax.set_xlabel("Total Price")
-        ax.set_ylabel("")
-        ax.set_xticks([400, 500, 550, 600, 650, 700, 750, 800])
-
-        st.pyplot(fig)
+    col1, col2, col3 = st.columns([1, 1, 1])
 
     
-    with col2:
-        # Gráfico de "Distribución por País" con colores de bandera, sin marco
-        fig, ax = plt.subplots(figsize=(2, 3))
+    with col1:
+      
+        fig, ax = plt.subplots(figsize=(2, 2))
         
         colores_productos ={
             'Laptop': '#c60b1e',  
@@ -148,7 +104,7 @@ if vista_general or not vista_filtrada:
 
         st.pyplot(fig)
     
-    with col3:
+    with col2:
     # Crear los datos para el gráfico de pastel
      gender_counts1 = df['Gender'].value_counts()
     labels = gender_counts1.index  # Etiquetas (géneros)
@@ -159,7 +115,7 @@ if vista_general or not vista_filtrada:
     pie_colors = [colors[label] for label in labels]
 
     # Crear el gráfico de pastel
-    fig, ax = plt.subplots(figsize=(6, 6))
+    fig, ax = plt.subplots(figsize=(2, 2))
     ax.pie(
         sizes, 
         labels=labels, 
@@ -173,7 +129,7 @@ if vista_general or not vista_filtrada:
     # Mostrar el gráfico en Streamlit
     st.pyplot(fig)
     
-    with col4:
+    with col3:
         fig, ax = plt.subplots(figsize=(5, 4))
         sns.histplot(df['Payment Method'], bins=30, kde=True, color="#3070b8", ax=ax)
         ax.set_title("Distribución de metodos de pago")
