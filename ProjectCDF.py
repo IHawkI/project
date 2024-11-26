@@ -5,7 +5,7 @@ import numpy as np
 import seaborn as sns
 
 # Cargar los datos
-df = pd.read_csv('https://raw.githubusercontent.com/IHawkI/graficas/refs/heads/main/dflimpio')
+df = pd.read_csv('https://raw.githubusercontent.com/IHawkI/graficas/refs/heads/main/dflimpio--1')
 
 # CSS para ampliar el ancho del contenido y mostrar las métricas en una sola fila
 st.markdown("""
@@ -164,7 +164,7 @@ if vista_general or not vista_filtrada:
         st.pyplot(fig)
 
     # Segunda fila de gráficos
-    col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
+    col1, col2, col3= st.columns([1, 1, 1, 1])
     with col1:
         fig, ax = plt.subplots(figsize=(5, 4))
         sns.countplot(data=df, x='Order Status', ax=ax, palette="Set2")
@@ -182,22 +182,6 @@ if vista_general or not vista_filtrada:
         sns.countplot(data=df, x='Shipping Type', ax=ax, palette="Set2")
         ax.set_title("Tipo de transporte")
         st.pyplot(fig)
-        ax.set_xticklabels(ax.get_xticklabels(), rotation=90, ha='center')
-        st.pyplot(fig)
-    
-    with col4:
-       
-        fig, ax = plt.subplots(figsize=(5, 4))
-
-  
-        sns.countplot(data=df, x='Loyalty Member', ax=ax, palette="Set3")
-
-      
-        ax.set_title("Membresias de lealtad")
-
-       
-        ax.set_xticklabels(ax.get_xticklabels(), rotation=90, ha='center')
-
        
         st.pyplot(fig)
 
