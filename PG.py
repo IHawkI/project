@@ -97,7 +97,7 @@ if vista_general or not vista_filtrada:
             'Headphones': '#000000', 
             'Tablet': '#1A329d',
             'Smartwatch': '#410D2D',
-            '0': '#FF0000'    
+            'unknown': '#FF0000'    
         }
         
         sns.countplot(data=df, x='Product Type', ax=ax, palette=colores_productos)
@@ -118,7 +118,7 @@ if vista_general or not vista_filtrada:
     
     with col3:
         fig, ax = plt.subplots(figsize=(5, 4))
-        sns.countplot(data=df, x='Gender', ax=ax, palette={'Female': '#ff1493', 'Male': '#1e90ff', 'Not-specified': 'Grey'})
+        sns.countplot(data=df, x='Gender', ax=ax, palette={'Female': '#ff1493', 'Male': '#1e90ff', 'unknown': 'Grey'})
         ax.set_title("Distribución por Género")
         ax.set_xlabel("")
         ax.set_ylabel("")
